@@ -1514,7 +1514,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs.Bindings
             CancellationToken cancellationToken = CancellationToken.None;
 
             // Act & Assert
-            Exception exception = Assert.Throws<Exception>(() => product.FlushAsync(cancellationToken));
+            Exception exception = Assert.ThrowsAsync<Exception>(() => product.FlushAsync(cancellationToken)).Result;
             Assert.Same(expectedException, exception);
         }
 
@@ -1792,8 +1792,8 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs.Bindings
             CancellationToken cancellationToken = CancellationToken.None;
 
             // Act & Assert
-            Exception exception = Assert.Throws<Exception>(
-                () => product.ReadAsync(buffer, offset, count, cancellationToken));
+            Exception exception = Assert.ThrowsAsync<Exception>(
+                () => product.ReadAsync(buffer, offset, count, cancellationToken)).Result;
             Assert.Same(expectedException, exception);
         }
 
@@ -2032,8 +2032,8 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs.Bindings
             CancellationToken cancellationToken = CancellationToken.None;
 
             // Act & Assert
-            Exception exception = Assert.Throws<Exception>(
-                () => product.WriteAsync(buffer, offset, count, cancellationToken));
+            Exception exception = Assert.ThrowsAsync<Exception>(
+                () => product.WriteAsync(buffer, offset, count, cancellationToken)).Result;
             Assert.Same(expectedException, exception);
         }
 
@@ -2381,7 +2381,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs.Bindings
             CloudBlobStream product = CreateProductUnderTest(innerStream, committedAction);
 
             // Act & Assert
-            Assert.DoesNotThrow(() => product.Commit());
+            product.Commit();
         }
 
         [Fact]
@@ -2426,7 +2426,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs.Bindings
             CancellationToken cancellationToken = CancellationToken.None;
 
             // Act & Assert
-            Exception exception = Assert.Throws<Exception>(() => product.CommitAsync(cancellationToken));
+            Exception exception = Assert.ThrowsAsync<Exception>(() => product.CommitAsync(cancellationToken)).Result;
             Assert.Same(expectedException, exception);
         }
 
@@ -2681,7 +2681,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs.Bindings
             WatchableCloudBlobStream product = CreateProductUnderTest(innerStream, committedAction);
 
             // Act & Assert
-            Assert.DoesNotThrow(() => product.CommitAsync(CancellationToken.None).GetAwaiter().GetResult());
+            product.CommitAsync(CancellationToken.None).GetAwaiter().GetResult();
         }
 
         [Fact]

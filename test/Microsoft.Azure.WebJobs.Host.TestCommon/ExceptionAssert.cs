@@ -8,11 +8,6 @@ namespace Microsoft.Azure.WebJobs.Host.TestCommon
 {
     public static class ExceptionAssert
     {
-        public static void DoesNotThrow(Action action)
-        {
-            Assert.DoesNotThrow(() => action.Invoke());
-        }
-
         public static void ThrowsArgument(Action action, string expectedParameterName)
         {
             ArgumentException exception = Assert.Throws<ArgumentException>(() => action.Invoke());

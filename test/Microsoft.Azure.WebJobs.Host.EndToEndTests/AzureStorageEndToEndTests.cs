@@ -146,7 +146,9 @@ namespace Microsoft.Azure.WebJobs.Host.EndToEndTests
         }
 
         // 1 minute timeout
-        [Fact(Timeout = 60 * 1000)]
+        [Fact]
+        // (Timeout = 60 * 1000)
+        // The support for tests that automatically time out has been removed from xUnit.net v2, and there is no direct replacement for this feature. 
         public void AzureStorageEndToEndFast()
         {
             EndToEndTest(uploadBlobBeforeHostStart: true);

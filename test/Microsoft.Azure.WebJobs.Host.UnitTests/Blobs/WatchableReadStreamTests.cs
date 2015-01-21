@@ -826,8 +826,8 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs
             CancellationToken cancellationToken = CancellationToken.None;
 
             // Act & Assert
-            Exception exception = Assert.Throws<Exception>(
-                () => product.CopyToAsync(destination, bufferSize, cancellationToken));
+            Exception exception = Assert.ThrowsAsync<Exception>(
+                () => product.CopyToAsync(destination, bufferSize, cancellationToken)).Result;
             Assert.Same(expectedException, exception);
         }
 
@@ -1041,8 +1041,8 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs
             CancellationToken cancellationToken = CancellationToken.None;
 
             // Act & Assert
-            Exception exception = Assert.Throws<Exception>(
-                () => product.ReadAsync(buffer, offset, count, cancellationToken));
+            Exception exception = Assert.ThrowsAsync<Exception>(
+                () => product.ReadAsync(buffer, offset, count, cancellationToken)).Result;
             Assert.Same(expectedException, exception);
         }
 
@@ -1281,8 +1281,8 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Blobs
             CancellationToken cancellationToken = CancellationToken.None;
 
             // Act & Assert
-            Exception exception = Assert.Throws<Exception>(
-                () => product.WriteAsync(buffer, offset, count, cancellationToken));
+            Exception exception = Assert.ThrowsAsync<Exception>(
+                () => product.WriteAsync(buffer, offset, count, cancellationToken)).Result;
             Assert.Same(expectedException, exception);
         }
 

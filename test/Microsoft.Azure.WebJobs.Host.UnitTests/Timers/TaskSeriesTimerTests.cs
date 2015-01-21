@@ -575,7 +575,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Timers
 
                     // Assert
                     Assert.NotNull(task);
-                    Assert.DoesNotThrow(() => task.GetAwaiter().GetResult());
+                    task.GetAwaiter().GetResult();
                 }
             }
         }
@@ -618,7 +618,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Timers
 
                     // Assert
                     Assert.NotNull(task);
-                    Assert.DoesNotThrow(() => task.GetAwaiter().GetResult());
+                    task.GetAwaiter().GetResult();
                 }
             }
         }
@@ -727,7 +727,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Timers
             ITaskSeriesTimer product = CreateProductUnderTest(command);
 
             // Act & Assert
-            ExceptionAssert.DoesNotThrow(() => product.Dispose());
+            product.Dispose();
         }
 
         [Fact]
@@ -739,7 +739,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Timers
             product.Dispose();
 
             // Act & Assert
-            ExceptionAssert.DoesNotThrow(() => product.Dispose());
+            product.Dispose();
         }
 
         [Fact]
@@ -752,7 +752,7 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Timers
             product.StopAsync(CancellationToken.None).GetAwaiter().GetResult();
 
             // Act & Assert
-            ExceptionAssert.DoesNotThrow(() => product.Dispose());
+            product.Dispose();
         }
 
         [Fact]

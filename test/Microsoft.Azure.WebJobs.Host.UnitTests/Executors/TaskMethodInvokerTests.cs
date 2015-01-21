@@ -57,8 +57,8 @@ namespace Microsoft.Azure.WebJobs.Host.UnitTests.Executors
             object[] arguments = null;
 
             // Act & Assert
-            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(
-                () => invoker.InvokeAsync(instance, arguments));
+            InvalidOperationException exception = Assert.ThrowsAsync<InvalidOperationException>(
+                () => invoker.InvokeAsync(instance, arguments)).Result;
             Assert.Same(expectedException, exception);
         }
 
